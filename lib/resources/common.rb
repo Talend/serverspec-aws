@@ -9,6 +9,7 @@ module Serverspec
       # The Serverspec::Type::AWS::VERSION constant actually sets this library
       # version in the format: major.minor.patch.build
       VERSION = '0.1.1'.freeze
+      REGION = 'us-east-1'
 
       # Check if the initialization argument of an AWS resource class is present
       # @param arg_name [String] - The name of the init argument
