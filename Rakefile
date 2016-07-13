@@ -11,7 +11,7 @@ begin
     gem.description = %(Serverspec resources for testing the AWS infrastructure)
     gem.author      = 'Ștefan Rusu'
     gem.email       = 'saltwaterc@gmail.com'
-    gem.files       = Dir['lib/*.rb'] + Dir['lib/resources/*.rb']
+    gem.files       = Dir['lib/*.rb'] + Dir['lib/resources/*.rb'] + Dir['lib/resources/**/*.rb']
     gem.license     = 'BSD-3-Clause'
     gem.homepage    = 'https://github.com/SaltwaterC/serverspec-aws'
   end
@@ -72,3 +72,4 @@ task test: [:rubocop, :spec]
 
 # Testing stuff
 task default: [:test]
+
