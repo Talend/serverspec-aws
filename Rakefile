@@ -13,7 +13,7 @@ begin
     gem.email       = 'saltwaterc@gmail.com'
     gem.files       = Dir['lib/*.rb'] + Dir['lib/resources/*.rb'] + Dir['lib/resources/**/*.rb']
     gem.license     = 'BSD-3-Clause'
-    gem.homepage    = 'https://github.com/SaltwaterC/serverspec-aws'
+    gem.homepage    = 'https://github.com/Talend/serverspec-aws'
   end
 rescue LoadError
   STDERR.puts 'Jeweler, or one of its dependencies, is not available.'
