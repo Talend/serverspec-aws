@@ -17,7 +17,7 @@ module Serverspec
           def initialize(vpc_id, instance = nil)
             check_init_arg 'vpc_id', 'EC2::VPC', vpc_id
             @vpc_id = vpc_id
-            @aws = instance.nil? ? Aws::EC2::Client.new(REGION) : instance
+            @aws = instance.nil? ? Aws::EC2::Client.new(region: REGION) : instance
             get_vpc vpc_id
           end
 
