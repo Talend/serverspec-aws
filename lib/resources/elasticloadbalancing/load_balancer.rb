@@ -25,8 +25,10 @@ module Serverspec
               elb_name
             )
             @elb_name = elb_name
+            @instance_states = []
             get_instance instance
             get_elb elb_name
+            get_instance_states
           end
 
           # Returns the string representation of
@@ -111,6 +113,10 @@ module Serverspec
             instances
           end
 
+          def instance_states
+            @instance_states
+          end
+
           # Information about the health checks conducted on the load balancer
           # @return [Hash]
           def health_check
@@ -143,6 +149,18 @@ module Serverspec
             ).load_balancer_descriptions
             check_length 'load balancers', elbs
             @elb = elbs[0]
+          end
+
+          # @private
+          def get_instance_states
+            states = []
+            @aws.describe_instance_health({
+              load_balancer_name: @elb_name,
+              instances:          instances.map { |id| {instance_id: id} }
+            }).instance_states.each do |state|
+              states << state.state
+            end
+            @instance_states = states
           end
 
           # @private

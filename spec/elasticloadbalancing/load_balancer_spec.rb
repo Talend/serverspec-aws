@@ -48,6 +48,17 @@ elb1.stub_responses(
     }
   ]
 )
+elb1.stub_responses(
+  :describe_instance_health,
+  instance_states: [
+    {
+      state: 'InService'
+    },
+    {
+      state: 'OutOfService'
+    }
+  ]
+)
 
 elb2 = Aws::ElasticLoadBalancing::Client.new
 elb2.stub_responses(
@@ -98,6 +109,7 @@ RSpec.describe elb1 = ElasticLoadBalancing::LoadBalancer.new(
   its(:subnets) { is_expected.to eq ['subnet-aabbccdd', 'subnet-ddccbbaa'] }
   its(:vpc_id) { is_expected.to eq 'vpc-aabbccdd' }
   its(:instances) { is_expected.to eq ['i-aabbccdd', 'i-ddccbbaa'] }
+  its(:instance_states) { is_expected.to eq ['InService', 'OutOfService'] }
 
   its(:health_check) do
     hc = elb1.health_check
